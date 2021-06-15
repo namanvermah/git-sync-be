@@ -1,0 +1,17 @@
+connector:
+  name: nvh repo 2
+  identifier: nvh_repo_2
+  description:
+  orgIdentifier: default
+  projectIdentifier: Git_Sync_Project
+  type: Github
+  spec:
+    url: https://github.com/namanvermah/git-sync-be
+    authentication:
+      type: Http
+      spec:
+        type: UsernamePassword
+        spec:
+          username: namanvermah
+          passwordRef: namanvermah_password
+    type: Repo
