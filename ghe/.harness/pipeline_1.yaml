@@ -1,0 +1,67 @@
+pipeline:
+    name: pipeline 1
+    identifier: pipeline_1
+    projectIdentifier: GHE_Git_Sync
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: s1
+              identifier: s1
+              description: ""
+              type: Deployment
+              spec:
+                  serviceConfig:
+                      serviceDefinition:
+                          spec:
+                              manifestOverrideSets: []
+                              manifests: []
+                              artifacts:
+                                  sidecars: []
+                                  primary:
+                                      type: DockerRegistry
+                                      spec:
+                                          connectorRef: <+pipeline.name>
+                                          imagePath: library/nginx
+                                          tag: <+input>
+                              variables: []
+                          type: Kubernetes
+                      service:
+                          name: s1
+                          identifier: s1
+                  infrastructure:
+                      environment:
+                          name: e1
+                          identifier: e1
+                          type: PreProduction
+                      infrastructureDefinition:
+                          type: KubernetesDirect
+                          spec:
+                              connectorRef: <+pipeline.name>
+                              namespace: aa
+                              releaseName: aa
+                      allowSimultaneousDeployments: false
+                      infrastructureKey: ""
+                  execution:
+                      steps:
+                          - step:
+                                name: Rollout Deployment
+                                identifier: rolloutDeployment
+                                type: K8sRollingDeploy
+                                timeout: 10m
+                                spec:
+                                    skipDryRun: false
+                      rollbackSteps:
+                          - step:
+                                name: Rollback Rollout Deployment
+                                identifier: rollbackRolloutDeployment
+                                type: K8sRollingRollback
+                                timeout: 10m
+                                spec: {}
+              tags: {}
+              failureStrategies:
+                  - onFailure:
+                        errors:
+                            - AllErrors
+                        action:
+                            type: StageRollback
