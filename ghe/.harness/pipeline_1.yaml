@@ -8,7 +8,7 @@ pipeline:
         - stage:
               name: s1
               identifier: s1
-              description: stage description
+              description: stage description changed
               type: Deployment
               spec:
                   serviceConfig:
