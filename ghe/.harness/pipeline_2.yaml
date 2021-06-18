@@ -1,0 +1,64 @@
+pipeline:
+    name: pipeline 2
+    identifier: pipeline_2
+    projectIdentifier: GHE_Git_Sync
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: s1
+              identifier: s1
+              description: ""
+              type: Deployment
+              spec:
+                  serviceConfig:
+                      serviceDefinition:
+                          type: Kubernetes
+                          spec:
+                              manifestOverrideSets: []
+                              manifests: []
+                              artifacts:
+                                  sidecars: []
+                                  primary:
+                                      type: DockerRegistry
+                                      spec:
+                                          connectorRef: namanvermah_docker
+                                          imagePath: library/mongo
+                                          tag: windowsservercore-ltsc2016
+                              variables: []
+                      serviceRef: s1
+                  infrastructure:
+                      environmentRef: e1
+                      infrastructureDefinition:
+                          type: KubernetesDirect
+                          spec:
+                              connectorRef: <+pipeline.name>
+                              namespace: aa
+                              releaseName: aa
+                      allowSimultaneousDeployments: false
+                      infrastructureKey: ""
+                  execution:
+                      steps:
+                          - step:
+                                type: ShellScript
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    shell: Bash
+                                    onDelegate: true
+                                    source:
+                                        type: Inline
+                                        spec:
+                                            script: echo done
+                                    environmentVariables: []
+                                    outputVariables: []
+                                    executionTarget: {}
+                                timeout: 10m
+                      rollbackSteps: []
+              tags: {}
+              failureStrategies:
+                  - onFailure:
+                        errors:
+                            - AllErrors
+                        action:
+                            type: StageRollback
