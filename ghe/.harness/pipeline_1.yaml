@@ -45,12 +45,20 @@ pipeline:
                   execution:
                       steps:
                           - step:
-                                name: Rollout Deployment
-                                identifier: rolloutDeployment
-                                type: K8sRollingDeploy
-                                timeout: 10m
+                                type: ShellScript
+                                name: echo
+                                identifier: echo
                                 spec:
-                                    skipDryRun: false
+                                    shell: Bash
+                                    onDelegate: true
+                                    source:
+                                        type: Inline
+                                        spec:
+                                            script: echo done
+                                    environmentVariables: []
+                                    outputVariables: []
+                                    executionTarget: {}
+                                timeout: 10m
                       rollbackSteps:
                           - step:
                                 name: Rollback Rollout Deployment
