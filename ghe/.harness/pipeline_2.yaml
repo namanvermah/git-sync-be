@@ -49,7 +49,7 @@ pipeline:
                                     source:
                                         type: Inline
                                         spec:
-                                            script: echo done
+                                            script: echo done PR
                                     environmentVariables: []
                                     outputVariables: []
                                     executionTarget: {}
