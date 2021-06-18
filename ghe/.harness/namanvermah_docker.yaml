@@ -1,7 +1,6 @@
 connector:
   name: namanvermah docker
   identifier: namanvermah_docker
-  description: something
   orgIdentifier: default
   projectIdentifier: GHE_Git_Sync
   type: DockerRegistry
@@ -9,4 +8,7 @@ connector:
     dockerRegistryUrl: https://index.docker.io/v2/
     providerType: DockerHub
     auth:
-      type: Anonymous
+      type: UsernamePassword
+      spec:
+        username: namanvermah
+        passwordRef: namanvermah_docker_password
