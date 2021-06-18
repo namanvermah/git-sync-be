@@ -1,0 +1,12 @@
+connector:
+  name: namanvermah docker
+  identifier: namanvermah_docker
+  description:
+  orgIdentifier: default
+  projectIdentifier: GHE_Git_Sync
+  type: DockerRegistry
+  spec:
+    dockerRegistryUrl: https://index.docker.io/v2/
+    providerType: DockerHub
+    auth:
+      type: Anonymous
