@@ -1,7 +1,7 @@
 connector:
   name: namanvermah docker
   identifier: namanvermah_docker
-  description:
+  description: something
   orgIdentifier: default
   projectIdentifier: GHE_Git_Sync
   type: DockerRegistry
