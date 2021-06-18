@@ -21,9 +21,9 @@ pipeline:
                                   primary:
                                       type: DockerRegistry
                                       spec:
-                                          connectorRef: <+pipeline.name>
+                                          connectorRef: namanvermah_docker
                                           imagePath: library/nginx
-                                          tag: <+input>
+                                          tag: latest
                               variables: []
                           type: Kubernetes
                       service:
