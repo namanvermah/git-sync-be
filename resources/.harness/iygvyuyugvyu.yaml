@@ -1,0 +1,17 @@
+inputSet:
+  identifier: "iygvyuyugvyu"
+  name: "iygvyuyugvyu"
+  orgIdentifier: "alternate"
+  projectIdentifier: "Git_Sync_Project_Manager"
+  pipeline:
+    identifier: "pipeline_1"
+    stages:
+    - stage:
+        identifier: "sw1"
+        type: "Deployment"
+        spec:
+          infrastructure:
+            infrastructureDefinition:
+              type: "KubernetesDirect"
+              spec:
+                namespace: "sss"
