@@ -1,0 +1,39 @@
+inputSet:
+  identifier: "innn1"
+  name: "innn1"
+  orgIdentifier: "alternate"
+  projectIdentifier: "Git_Sync_Project_Manager"
+  pipeline:
+    identifier: "qa_pipeline"
+    stages:
+    - stage:
+        identifier: "sw1"
+        type: "Deployment"
+        spec:
+          serviceConfig:
+            serviceDefinition:
+              type: "Kubernetes"
+              spec:
+                manifests:
+                - manifest:
+                    identifier: "ss"
+                    type: "K8sManifest"
+                    spec:
+                      store:
+                        type: "Github"
+                        spec:
+                          connectorRef: "nvh_git_sync_connector"
+                          repoName: "ee"
+          infrastructure:
+            infrastructureDefinition:
+              type: "KubernetesDirect"
+              spec:
+                namespace: "eee"
+          execution:
+            steps:
+            - step:
+                identifier: "rolloutDeployment"
+                type: "K8sRollingDeploy"
+                timeout: "15m"
+                spec:
+                  skipDryRun: true
