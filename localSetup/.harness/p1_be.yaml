@@ -1,0 +1,62 @@
+pipeline:
+    name: p1 be
+    identifier: p1_be
+    projectIdentifier: nvh_git_sync
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: echo
+              identifier: echo
+              description: ""
+              type: Deployment
+              spec:
+                  serviceConfig:
+                      serviceDefinition:
+                          type: Kubernetes
+                          spec:
+                              artifacts:
+                                  sidecars: []
+                                  primary:
+                                      type: DockerRegistry
+                                      spec:
+                                          connectorRef: nvh_docker
+                                          imagePath: library/nginx
+                                          tag: perl
+                              variables: []
+                      serviceRef: echo
+                  infrastructure:
+                      environmentRef: echo
+                      infrastructureDefinition:
+                          type: KubernetesDirect
+                          spec:
+                              connectorRef: account.temp
+                              namespace: <+input>
+                              releaseName: <+input>
+                      allowSimultaneousDeployments: false
+                      infrastructureKey: ""
+                  execution:
+                      steps:
+                          - step:
+                                type: ShellScript
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    shell: Bash
+                                    onDelegate: true
+                                    source:
+                                        type: Inline
+                                        spec:
+                                            script: echo done
+                                    environmentVariables: []
+                                    outputVariables: []
+                                    executionTarget: {}
+                                timeout: 10m
+                      rollbackSteps: []
+              tags: {}
+              failureStrategies:
+                  - onFailure:
+                        errors:
+                            - AllErrors
+                        action:
+                            type: StageRollback
