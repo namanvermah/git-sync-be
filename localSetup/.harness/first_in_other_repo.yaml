@@ -1,0 +1,17 @@
+inputSet:
+  identifier: "first_in_other_repo"
+  name: "first in other repo"
+  orgIdentifier: "default"
+  projectIdentifier: "nvh_git_sync"
+  pipeline:
+    identifier: "p1"
+    stages:
+    - stage:
+        identifier: "echo"
+        type: "Deployment"
+        spec:
+          infrastructure:
+            infrastructureDefinition:
+              type: "KubernetesDirect"
+              spec:
+                namespace: "first-in-other-repo"
