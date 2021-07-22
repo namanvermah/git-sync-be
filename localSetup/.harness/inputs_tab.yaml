@@ -19,8 +19,8 @@ pipeline:
                                 identifier: search
                                 spec:
                                     url: https://www.google.com
-                                    method: <+input>
                                     headers: []
                                     outputVariables: []
+                                    method: GET
                                 timeout: 10s
               tags: {}
