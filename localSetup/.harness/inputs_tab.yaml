@@ -21,6 +21,6 @@ pipeline:
                                     url: https://www.google.com
                                     headers: []
                                     outputVariables: []
-                                    method: GET
-                                timeout: 10s
+                                    method: <+input>
+                                timeout: <+input>
               tags: {}
