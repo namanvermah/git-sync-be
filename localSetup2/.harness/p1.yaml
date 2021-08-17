@@ -1,27 +1,21 @@
 pipeline:
-    name: p1
-    identifier: p1
-    projectIdentifier: nvh_git_sync_2
-    orgIdentifier: default
-    tags: {}
     stages:
         - stage:
-              name: a1
-              identifier: a1
-              description: "a1"
               type: Approval
               spec:
                   execution:
                       steps:
                           - step:
                                 type: Http
-                                name: search
-                                identifier: search
+                                timeout: 10s
                                 spec:
                                     url: https://www.google.com
                                     method: GET
-                                    headers: []
-                                    outputVariables: []
-                                timeout: 10s
-                  serviceDependencies: []
-              tags: {}
+                                name: search
+                                identifier: search
+              name: a1
+              identifier: a1
+    projectIdentifier: nvh_git_sync_2
+    orgIdentifier: default
+    name: p1
+    identifier: p1
